@@ -5,142 +5,197 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Locomotion</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+<head>
+	<title>Locomotion</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">NaturePill</a>
-					</header>
+<body class="is-preload">
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-                            <li class="active"><a href="index.html">Overview</a></li>
-							<li><a href="environment.html">Environment</a></li>
-							<li><a href="rendering.html">Rendering</a></li>
-							<li class="active"><a href="lynnspage.html">Locomotion</a></li>
-							<li><a href="resources.html">Resources</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+	<!-- Wrapper -->
+	<div id="wrapper">
 
-				<!-- Main -->
-					<div id="main">
+		<!-- Header -->
+		<header id="header">
+			<a href="index.html" class="logo">NaturePill</a>
+		</header>
 
-						<!-- Post -->
-							<section class="post">
-								<header class="major">
-									<h1>locomotion</h1>
-                                    <i>Lynn Weyn</i>
-								</header>
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li class="active"><a href="index.html">Overview</a></li>
+				<li><a href="environment.html">Environment</a></li>
+				<li><a href="rendering.html">Rendering</a></li>
+				<li class="active"><a href="lynnspage.html">Locomotion</a></li>
+				<li><a href="resources.html">Resources</a></li>
+			</ul>
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+			</ul>
+		</nav>
 
-								<!-- Introduction -->
-									<h2>Introduction</h2>
-                                    <p>
-                                        Locomotion techniques are required in order to travel beyond the boundaries of the physical room.
+		<!-- Main -->
+		<div id="main">
 
-                                        Bench alignment issue locomotion must address, since there is a physical bench in the real room, but only visible virtually when the user navigates to certain points in the scene using a locomotion technique. We do not want the bench to be following around the user as they move in the virtual environment. To align exactly to certain points in the scene requires a certain level of precision in locomotion, which most techniques cannot provide without causing nausea.
-                                        
-                                        There are many different existing locomotion techniques, but we needed one that would be most immersive and realistic, allow for the alignment to the bench, and is not nauseating. 
-                                        </p>
-                                        <hr />
+			<!-- Post -->
+			<section class="post">
+				<header class="major">
+					<h1>locomotion</h1>
+					<i>Lynn Weyn</i>
+				</header>
 
-								<!-- Locomotion alternatives -->
-									<h2>Locomotion alternatives implemented</h2>
-                                    <p>Based on past research and what made sense given the context of our environment, we implemented two alternative locomotion techniques that the user can switch between.
-									</p>
-                                        <div class="row">
-										<div class="col-6 col-12-small">
+				<!-- Introduction -->
+				<h2>Introduction</h2>
+				<p>
+					Locomotion techniques are required in order to travel beyond the boundaries of the physical room.
 
-											<h3>Teleportation</h3>
-                                            <p>To teleport, the user can press the trackpad button to span an arc from their virtual hand to where they will teleport to. When the user lets go of the top trackpad button, the screen fades out of their previous (virtual) location and fades into the location they were pointing to. This represents a change in viewpoint within the scene and thus instantaneous travel to a new location.
-                                            </p>
-                                            <span class="image fit"><img src="images/teleporttutorial.png" alt="" /></span>
+					Bench alignment issue locomotion must address, since there is a physical bench in the real room, but
+					only visible virtually when the user navigates to certain points in the scene using a locomotion
+					technique. We do not want the bench to be following around the user as they move in the virtual
+					environment. To align exactly to certain points in the scene requires a certain level of precision
+					in locomotion, which most techniques cannot provide without causing nausea.
 
-										</div>
-										<div class="col-6 col-12-small">
+					There are many different existing locomotion techniques, but we needed one that would be most
+					immersive and realistic, allow for the alignment to the bench, and is not nauseating.
+				</p>
+				<hr />
 
-											<h3>Arm Swinging</h3>
-											<p>When the user wishes to use arm swing locomotion, they can hold down both trigger buttons and swing the remotes in order to move in their view direction.
-                                            </p>
-                                            <span class="image fit"><img src="images/armswingtuorial.png" alt="" /></span>
-                                            <!-- <span class="image fit"><img src="images/triggerbuttons.png" alt="" /></span> -->
-                                            <!-- <span class="image fit"><img src="images/swingman.png" alt="" /></span> -->
-                                            <p>The user cannot hold the branch (since both trigger buttons need to be pressed on the controllers) or align with the bench, due to the lack of precision arm-swinging provides.</p>
-										</div>
-									</div>
-                                    <hr />									
+				<!-- Locomotion alternatives -->
+				<h2>Locomotion alternatives implemented</h2>
+				<p>Based on past research and what made sense given the context of our environment, we implemented two
+					alternative locomotion techniques that the user can switch between.
+				</p>
+				<div class="row">
+					<div class="col-6 col-12-small">
 
-                                    <h2>Locomotion Matters Addressed</h2>
-									<h3>The Branch And Teleporting with it</h3>
-									<p><span class="image left"><img src="images/branchheld.png" alt="" /></span>A real branch was found in nature, modelled in Blender, and placed in the environment. The branch’s real motions are mapped to what can be seen in the virtual environment through the use of an HTC vive tracker. <br \ >The figure shows the real branch with the tracker (A), and the virtual branch with (B) and without (C) a tracker placeholder object – turned off to increase immersion. This is what the user sees when looking at the branch while wearing a VR Headset.
-                                        </p>
-									<p><span class="image right"><img src="images/branchteleport.png" alt="" /></span>Teleportation uses the branch if the tracker is more than approximately 60cm above the ground, upon which the teleportation arc spans from where the branch ends to where the user will teleport. Similarly to teleportation without the branch, the arc appears when the user holds down the HTC Vive controller’s top trackpad button with their other hand, and when they let go they will teleport to where they are pointing. 
-                                    </p>
-
-                                    <h3>Alignment to the bench</h3>
-									<p><span class="image left"><img src="images/takeaseat.png" alt="" /></span>In order to align precisely to the bench, the user can teleport to fixed teleportation markers in the scene, each placed near a transparent bench.
-                                        <br/>Once they teleport there, the virtual bench will become opaque to indicate that the bench is ready for sitting. When the user moves away from the bench virtually by teleporting or arm-swinging, a transparent bench is placed there to indicate that it is no longer correctly aligned. 
-                                    
-                                    </p>
-									<p><span class="image right"><img src="images/benchperspectives.png" alt="" /></span>The figure shows the player in the real room looking towards the bench with an attached tracker(A), and what they would see if they were (B) or were not (C) aligned with the bench in the virtual world.
-                         
-                                    </p>
-
-                                    <h3>Room boundaries</h3>
-									<p><span class="image left"><img src="images/roomboundaries.png" alt="" /></span>Since there is a real bench in the physical room at all times, when not aligned with the bench the room boundaries need to be in front of it so as to prevent collision and thus potential injuries. However, after teleporting to the dedicated markers (and so aligned with the real bench), we want two things to happen: the boundaries need to extend to be behind the bench to indicate that it is now approachable, and when sitting on the bench itself, we do not want the user to be able to see the grid as it will reduce immersion. We had to make our own system to implement all this functionality.
-                                    </p>
-
-									<hr />
-
-                                    <h2>Results, Conclusions, And Future Work</h2>
-                                    <p>
-
-                                        This project’s aim was to design and create a relaxing, explorative virtual nature pill that was both interactive and immersive through the use of multiple senses. Though our three expert evaluators had some positive feedback, proper user testing would need to be done to see how effective the environment is at its intentions. This environment is a good starting point, but some changes to the intuitiveness of aligning to the real-world bench, and being able to use the branch’s teleportation feature without the need of a second controller, would need to be looked into prior to additional testing.
-                                        <br/>
-                                        We implemented good locomotion mechanics for navigating the scene given the problems that come with real props in the room while wearing a VR headset. We answered the research questions by looking at literature and through design iterations. Touch was best incorporated with a bench and a branch, and relevant nature and feedback sounds worked well in the environment. A wide, reflective, slow flowing river with a distant waterfall were found to be an ideal balance of restorative and interesting. Both locomotion techniques implemented had their advantages and disadvantages, with arm-swinging being the most immersive and teleportation being less nauseating and good for alignment with real-world objects.
-
-                                    </p>
-
-
-							
-
-							</section>
+						<h3>Teleportation</h3>
+						<p>To teleport, the user can press the trackpad button to span an arc from their virtual hand to
+							where they will teleport to. When the user lets go of the top trackpad button, the screen
+							fades out of their previous (virtual) location and fades into the location they were
+							pointing to. This represents a change in viewpoint within the scene and thus instantaneous
+							travel to a new location.
+						</p>
+						<span class="image fit"><img src="images/teleporttutorial.png" alt="" /></span>
 
 					</div>
+					<div class="col-6 col-12-small">
 
-			
-
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+						<h3>Arm Swinging</h3>
+						<p>When the user wishes to use arm swing locomotion, they can hold down both trigger buttons and
+							swing the remotes in order to move in their view direction.
+						</p>
+						<span class="image fit"><img src="images/armswingtuorial.png" alt="" /></span>
+						<!-- <span class="image fit"><img src="images/triggerbuttons.png" alt="" /></span> -->
+						<!-- <span class="image fit"><img src="images/swingman.png" alt="" /></span> -->
+						<p>The user cannot hold the branch (since both trigger buttons need to be pressed on the
+							controllers) or align with the bench, due to the lack of precision arm-swinging provides.
+						</p>
 					</div>
+				</div>
+				<hr />
 
-			</div>
+				<h2>Locomotion Matters Addressed</h2>
+				<h3>The Branch And Teleporting with it</h3>
+				<p><span class="image left"><img src="images/branchheld.png" alt="" /></span>A real branch was found in
+					nature, modelled in Blender, and placed in the environment. The branch’s real motions are mapped to
+					what can be seen in the virtual environment through the use of an HTC vive tracker. <br \>The figure
+					shows the real branch with the tracker (A), and the virtual branch with (B) and without (C) a
+					tracker placeholder object – turned off to increase immersion. This is what the user sees when
+					looking at the branch while wearing a VR Headset.
+				</p>
+				<p><span class="image right"><img src="images/branchteleport.png" alt="" /></span>Teleportation uses the
+					branch if the tracker is more than approximately 60cm above the ground, upon which the teleportation
+					arc spans from where the branch ends to where the user will teleport. Similarly to teleportation
+					without the branch, the arc appears when the user holds down the HTC Vive controller’s top trackpad
+					button with their other hand, and when they let go they will teleport to where they are pointing.
+				</p>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+				<h3>Alignment to the bench</h3>
+				<p><span class="image left"><img src="images/takeaseat.png" alt="" /></span>In order to align precisely
+					to the bench, the user can teleport to fixed teleportation markers in the scene, each placed near a
+					transparent bench.
+					<br />Once they teleport there, the virtual bench will become opaque to indicate that the bench is
+					ready for sitting. When the user moves away from the bench virtually by teleporting or arm-swinging,
+					a transparent bench is placed there to indicate that it is no longer correctly aligned.
 
-	</body>
+				</p>
+				<p><span class="image right"><img src="images/benchperspectives.png" alt="" /></span>The figure shows
+					the player in the real room looking towards the bench with an attached tracker(A), and what they
+					would see if they were (B) or were not (C) aligned with the bench in the virtual world.
+
+				</p>
+
+				<h3>Room boundaries</h3>
+				<p><span class="image left"><img src="images/roomboundaries.png" alt="" /></span>Since there is a real
+					bench in the physical room at all times, when not aligned with the bench the room boundaries need to
+					be in front of it so as to prevent collision and thus potential injuries. However, after teleporting
+					to the dedicated markers (and so aligned with the real bench), we want two things to happen: the
+					boundaries need to extend to be behind the bench to indicate that it is now approachable, and when
+					sitting on the bench itself, we do not want the user to be able to see the grid as it will reduce
+					immersion. We had to make our own system to implement all this functionality.
+				</p>
+
+				<hr />
+
+				<h2>Results, Conclusions, And Future Work</h2>
+				<p>
+
+					This project’s aim was to design and create a relaxing, explorative virtual nature pill that was
+					both interactive and immersive through the use of multiple senses. Though our three expert
+					evaluators had some positive feedback, proper user testing would need to be done to see how
+					effective the environment is at its intentions. This environment is a good starting point, but some
+					changes to the intuitiveness of aligning to the real-world bench, and being able to use the branch’s
+					teleportation feature without the need of a second controller, would need to be looked into prior to
+					additional testing.
+					<br />
+					We implemented good locomotion mechanics for navigating the scene given the problems that come with
+					real props in the room while wearing a VR headset. We answered the research questions by looking at
+					literature and through design iterations. Touch was best incorporated with a bench and a branch, and
+					relevant nature and feedback sounds worked well in the environment. A wide, reflective, slow flowing
+					river with a distant waterfall were found to be an ideal balance of restorative and interesting.
+					Both locomotion techniques implemented had their advantages and disadvantages, with arm-swinging
+					being the most immersive and teleportation being less nauseating and good for alignment with
+					real-world objects.
+
+				</p>
+
+
+
+
+			</section>
+
+		</div>
+
+
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<ul>
+				<li>&copy; Untitled</li>
+				<li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
 </html>
