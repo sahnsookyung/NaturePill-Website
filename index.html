@@ -6,11 +6,12 @@
 -->
 <html>
 	<head>
-		<title>Massively by HTML5 UP</title>
+		<title>NaturePill</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="assets/js/jquery.min.js"></script>
 	</head>
 	<body class="is-preload">
 
@@ -20,9 +21,10 @@
 				<!-- Intro -->
 					<div id="intro">
 						<h1>This is<br />
-						Massively</h1>
-						<p>A free, fully responsive HTML5 + CSS3 site template designed by <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a><br />
-						and released for free under the <a href="https://html5up.net/license">Creative Commons license</a>.</p>
+						NaturePill</h1>
+						<p>A realistic multisensory virtual reality forest environment with the goal of accessing the restorative benefits of nature <br />designed by 
+							<a href="">Soo Kyung Ahn</a> and <a href="">Lynn Weyn</a>.
+						</p>
 						<ul class="actions">
 							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
 						</ul>
@@ -34,9 +36,16 @@
 					</header>
 
 				<!-- Nav -->
-					<nav id="nav">
+					<div id="nav-placeholder"></div>
+					<script>
+						$(function(){
+							$("#nav-placeholder").load("nav.html");
+						});
+					</script>
+
+					<!-- <nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="index.html">This is Massively</a></li>
+							<li class="active"><a href="index.html">Overview</a></li>
 							<li><a href="generic.html">Generic Page</a></li>
 							<li><a href="elements.html">Elements Reference</a></li>
 						</ul>
@@ -46,7 +55,7 @@
 							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 						</ul>
-					</nav>
+					</nav> -->
 
 				<!-- Main -->
 					<div id="main">
@@ -217,7 +226,6 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
