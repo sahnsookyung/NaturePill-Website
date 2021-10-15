@@ -25,9 +25,8 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li><a href="index.html">This is Massively</a></li>
-							<li><a href="generic.html">Generic Page</a></li>
-							<li><a href="elements.html">Elements Reference</a></li>
+                            <li><a href="index.html">Overview</a></li>
+							<li><a href="rendering.html">Rendering</a></li>
 							<li class="active"><a href="lynnspage.html">Locomotion</a></li>
 							<li><a href="resources.html">Resources</a></li>
 						</ul>
@@ -85,9 +84,16 @@
 									</div>									
 
 									<h3>The Branch And Teleporting with it</h3>
-									<p><span class="image left"><img src="images/branchheld.png" alt="" /></span>A real branch was found in nature, modelled in Blender, and placed in the environment. The branch’s real motions are mapped to what can be seen in the virtual environment through the use of an HTC vive tracker. <br \ >The figure shows the real branch with the tracker, and the virtual branch with (B) and without (C) a tracker placeholder object – turned off to increase immersion. This is what the user sees when looking at the branch while wearing a VR Headset.
+									<p><span class="image left"><img src="images/branchheld.png" alt="" /></span>A real branch was found in nature, modelled in Blender, and placed in the environment. The branch’s real motions are mapped to what can be seen in the virtual environment through the use of an HTC vive tracker. <br \ >The figure shows the real branch with the tracker (A), and the virtual branch with (B) and without (C) a tracker placeholder object – turned off to increase immersion. This is what the user sees when looking at the branch while wearing a VR Headset.
                                         </p>
 									<p><span class="image right"><img src="images/branchteleport.png" alt="" /></span>Teleportation uses the branch if the tracker is more than approximately 60cm above the ground, upon which the teleportation arc spans from where the branch ends to where the user will teleport. Similarly to teleportation without the branch, the arc appears when the user holds down the HTC Vive controller’s top trackpad button with their other hand, and when they let go they will teleport to where they are pointing. 
+                                    </p>
+
+                                    <h3>Alignment to the bench</h3>
+									<p><span class="image left"><img src="images/takeaseat.png" alt="" /></span>In order to align precisely to the bench, the user can teleport to fixed teleportation markers in the scene, each placed near a transparent bench.
+                                        <br/>Once they teleport there, the virtual bench will become opaque to indicate that the bench is ready for sitting. When the user moves away from the bench virtually by teleporting or arm-swinging, a transparent bench is placed there to indicate that it is no longer correctly aligned. 
+                                        </p>
+									<p><span class="image right"><img src="images/benchperspectives.png" alt="" /></span>The figure shows the player in the real room looking towards the bench with an attached tracker(A), and what they would see if they were (B) or were not (C) aligned with the bench in the virtual world.
                                     </p>
 
 									<hr />
