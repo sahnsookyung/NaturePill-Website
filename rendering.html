@@ -48,19 +48,66 @@
 				</header>
 
 				<!-- Text stuff -->
-				<h2>Text</h2>
-				<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is
-					<em>emphasized</em>.
-					This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-					This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>.
-					Finally, this is a <a href="#">link</a>.</p>
+				<h2>Introduction</h2>
+				<p>
+					When rendering the environment, we want the best possible graphics to create the highest sense of realism. 
+					It is a bit of an art balancing realism and performance, 
+					as they are conflicting goals and gaining on the one side results in a loss in the other. 
+					There is a limit to the amount of computation in terms of time that we can fit in for each frame rendered, 
+					and efficient rendering is important because it provides increased frame rates resulting in a more immersive experience.
+				</p>
+
 				<hr />
-				<h2>Heading Level 2</h2>
-				<h3>Heading Level 3</h3>
-				<h4>Heading Level 4</h4>
-				<h5>Heading Level 5</h5>
-				<h6>Heading Level 6</h6>
+				<h2>Realism</h2>
+				<p> We have used some graphical techniques
+					to improve realism. Realism results in performance reduction. In 
+					general, the models for the forest were high quality scanned models
+					and enabled us to create a realistic environment using these models.
+					The texturing of the terrain was meticulously done to blend
+					combinations of grass, leaves, rocks, roots, sand and soil, and debris
+					placed (Figure 6) throughout the environment in convincing
+					locations. The trees used were of the same species, but such forests
+					are not rare in the world.</p>
+				
+				<h3>High Dynamic Range (HDR)</h3>
+				<h3>Lights and Shadows</h3>
+				<h3>Antialiasing</h3>
 				<hr />
+
+				<h2>Performance</h2>
+				<p>We have used some optimization techniques to make the environment run efficiently, which is important for the user experience.</p>
+				<h3>Frustum Culling</h3>
+				<h3>Single Pass Stereo Rendering</h3>
+				<h3>Level of Detail</h3>
+				<h3>Textures</h3>
+				<h3>Baked Lights</h3>
+				<hr />
+
+				<h2>Performance Evaluation</h2>
+				<p>The environment on which the baseline performance is measured
+					has HDR, no SSAO, and no antialiasing. A unity project build has
+					been created on which we measure the performance through the
+					benchmarking software MSI afterburner and Rivatuner Statistics
+					Server to measure the fps of the environment. There was no formal
+					testing done to measure the latency of the controllers, but heuristic
+					evaluation showed that there were no perceptible delays. 
+					<br />
+					The protocol for testing involved travelling along the boundaries of
+					the environment. [INSERT IMAGE OF BOUNDARY] 
+					
+					This allows us to get an exposure to the frame rates of the overall
+					environment. After starting the environment, we waited for a
+					minute before starting to take measurements to discard any frame
+					drops from starting the application. Similarly, we discarded frames
+					a couple of seconds after beginning the benchmark. We take the
+					measurement for a period of 60 seconds in total, and report the
+					average fps with its standard deviation, the 1% and the 0.1% fps.
+					The 1% and 0.1% fps results indicate the fps at the worst 1% and
+					0.1% quantiles of frame rates recorded. This is better than using the
+					minimum as the benchmark which can state that we have very low
+					minimum fps even if it is for a negligible period</p>
+				<hr />
+
 				<header>
 					<h2>Heading with a Subtitle</h2>
 					<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
@@ -206,10 +253,7 @@
 
 				<!-- Blockquote -->
 				<h2>Blockquote</h2>
-				<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus
-					euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
-					volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus vestibulum.
-					Blandit adipiscing eu felis.</blockquote>
+				
 
 				<hr />
 
@@ -464,73 +508,9 @@
 
 				<hr />
 
-				<!-- Preformatted Code -->
-				<h2>Preformatted</h2>
-				<pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-    print 'Iteration ' + i;
-    deck.shuffle();
-    i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';
-</code></pre>
-
 			</section>
 
 		</div>
-
-		<!-- Footer -->
-		<footer id="footer">
-			<section>
-				<form method="post" action="#">
-					<div class="fields">
-						<div class="field">
-							<label for="name">Name</label>
-							<input type="text" name="name" id="name" />
-						</div>
-						<div class="field">
-							<label for="email">Email</label>
-							<input type="text" name="email" id="email" />
-						</div>
-						<div class="field">
-							<label for="message">Message</label>
-							<textarea name="message" id="message" rows="3"></textarea>
-						</div>
-					</div>
-					<ul class="actions">
-						<li><input type="submit" value="Send Message" /></li>
-					</ul>
-				</form>
-			</section>
-			<section class="split contact">
-				<section class="alt">
-					<h3>Address</h3>
-					<p>1234 Somewhere Road #87257<br />
-						Nashville, TN 00000-0000</p>
-				</section>
-				<section>
-					<h3>Phone</h3>
-					<p><a href="#">(000) 000-0000</a></p>
-				</section>
-				<section>
-					<h3>Email</h3>
-					<p><a href="#">info@untitled.tld</a></p>
-				</section>
-				<section>
-					<h3>Social</h3>
-					<ul class="icons alt">
-						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a>
-						</li>
-						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a>
-						</li>
-						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-					</ul>
-				</section>
-			</section>
-		</footer>
 
 		<!-- Copyright -->
 		<div id="copyright">
