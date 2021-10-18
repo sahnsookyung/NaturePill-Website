@@ -50,17 +50,20 @@
 				<!-- Text stuff -->
 				<h2>Introduction</h2>
 				<p>
-					When rendering the environment, we want the best possible graphics to create the highest sense of realism. 
-					It is a bit of an art balancing realism and performance, 
-					as they are conflicting goals and gaining on the one side results in a loss in the other. 
-					There is a limit to the amount of computation in terms of time that we can fit in for each frame rendered, 
-					and efficient rendering is important because it provides increased frame rates resulting in a more immersive experience.
+					When rendering the environment, we want the best possible graphics to create the highest sense of
+					realism.
+					It is a bit of an art balancing realism and performance,
+					as they are conflicting goals and gaining on the one side results in a loss in the other.
+					There is a limit to the amount of computation in terms of time that we can fit in for each frame
+					rendered,
+					and efficient rendering is important because it provides increased frame rates resulting in a more
+					immersive experience.
 				</p>
 
 				<hr />
 				<h2>Realism</h2>
 				<p> We have used some graphical techniques
-					to improve realism. Realism results in performance reduction. In 
+					to improve realism. Realism results in performance reduction. In
 					general, the models for the forest were high quality scanned models
 					and enabled us to create a realistic environment using these models.
 					The texturing of the terrain was meticulously done to blend
@@ -68,34 +71,142 @@
 					placed (Figure 6) throughout the environment in convincing
 					locations. The trees used were of the same species, but such forests
 					are not rare in the world.</p>
-				
+
 				<h3>High Dynamic Range (HDR)</h3>
+				<p><span class="image left"><img src="images/HDRvsSDR.PNG" alt="" /></span>In the natural environment a
+					wide range of color occurs, and
+					standard dynamic range (SDR) is insufficient to create the
+					sensation that a person is watching a real object. HDR increases has
+					a larger range compared to SDR allowing for more realistic
+					lighting through increased color gamut and contrast, resulting in
+					brighter highlights, darker shadows, more details in the highlights
+					and shadows. Through HDR we can create lighting
+					that emulates the glare of the halo that forms around bright objects
+					such as the sun. The image seen on the left has HDR
+					applied on the left and SDR on the right. There is a partial
+					glare of the sun that can be observed on the left side
+					while there is none on the right side, and a slight color divide occurs
+					at the center due to the difference of HDR and SDR.</p>
 				<h3>Lights and Shadows</h3>
+				<p>
+					Realistic lighting and shadows are important for the environment.
+
+					Cooler, sunny weather tends to be associated with less stress.
+					The lighting of the environment was made to be quite bright and sunny,
+					with a lower position of the sun in relation to the horizon to support the
+					illusion of cooler weather.
+
+					The sunlight for the environment has been rendered as a directional
+					light aligned with the position of the sun in the skybox. Color
+					temperature of daylight can range from 4800K to 10000K, and we
+					initially used cooler light temperature of 8200K to match the cooler
+					feel for the environment. Although the environment was relaxing
+					according to the heuristic evaluators of the environment,
+					research showed that warmer tones are better for relaxation. Therefore, we decided to decrease the
+					color temperature of the sunlight to 6700K, which is a slight increase in
+					color temperature compared to the average outdoor noon temperature of 6504K
+					based on the D65 colorimetry standard created by the
+					International Commission on Illumination. Additionally, we added a bloom
+					effect to the sun to simulate its glow and add to its realism.
+
+					We used the highest shadow resolution provided natively by Unity to minimize
+					the appearance pixelated shadows, and scaled the rendering distances for shadows
+					appropriately so the discontinuity in the shadows are unnoticeable to the user.
+				</p>
 				<h3>Antialiasing</h3>
+				<p><span class="image left"><img src="images/3x zoom AA FXAA.PNG" alt="" /></span>When rendering
+					computer graphics, geometric objects are sampled
+					which generate pixels that are rendered on a computer screen.
+					There is a fundamental problem of this discretization process
+					stemming from limited sampling rates of displays, resulting in
+					objects appearing blocky, or stair-wise along its edges, silhouettes,
+					or creases. Due to this effect known as aliasing, sometimes very small objects
+					disappear between samples, or complex details of the features may
+					be lost. To avoid aliasing, we use an antialiasing
+					(AA) technique to mitigate it. There are a multitude of AA
+					techniques in the realm of computer science, and we briefly investigated
+					the effect of three AA techniques: MSAA (Multisampling anti-aliasing), FXAA (Fast approximate
+					anti-aliasing), and
+					SMAA ( Subpixel morphological anti-aliasing) in our <a
+						href="resources/Soo Kyung Ahn NaturePill.pdf">paper</a>.
+					The image on the left shows an image with FXAA and 3x zoom applied. Its inherent blurring of the
+					scene can be observed.
+				</p>
 				<hr />
 
 				<h2>Performance</h2>
-				<p>We have used some optimization techniques to make the environment run efficiently, which is important for the user experience.</p>
+				<p>We have used some optimization techniques to make the environment run efficiently, which is important
+					for the user experience. The techniques applied to our environment are briefly mentioned.</p>
 				<h3>Frustum Culling</h3>
+				<p><span class="image left"><img src="images/FrustumCulling.PNG" alt="" /></span>Any camera must
+					restrict the scene to a finite space for rendering
+					scenes, which prevents it from rendering forever. This is done
+					through a technique called frustum culling which clips objects
+					outside the view frustum and discards them. Through
+					this process, unnecessary computation for objects outside the view
+					frustum is removed and results in performance improvements.
+				</p>
 				<h3>Single Pass Stereo Rendering</h3>
+				<p>Multi pass stereo rendering performs the computation to render the same mesh twice
+					but treats it as different meshes and issues two draw calls, once for each eye,
+					and without optimizations it can take up to double the time rendering compared to a mono display.
+					This is inefficient, and single pass rendering uses the same mesh to create one image but issues
+					two draw calls to render to each eye, by packing it into a single texture twice the width of one eye
+					texture.
+					Single pass instanced rendering that we used optimizes this further and reduces the draw of a mesh
+					into a
+					single draw call that projects twice, once for each eye by instancing each draw call.
+					Due to the cache coherency of draw calls, it greatly reduces the CPU use and slightly reduces the
+					GPU use,
+					resulting in significant performance improvements.
+				</p>
 				<h3>Level of Detail</h3>
+				<p><span class="image left"><img src="images/LODPopping.PNG" alt="" /></span>
+					To optimize the environment, we used models that had level of detail that changes with distance.
+					Initially the smaller details of the environment had noticeable popping in and out of vision
+					due to the short culling distance, and the culling distance of the models that had this issue had to
+					be
+					scaled individually to be unnoticeable as it distracted the user and broke the sense of immersion.
+					The LOD popping, or the sudden appearance of objects from thin air as the distance falls below the
+					culling distance, can be seen in the image to the left.
+				</p>
 				<h3>Textures</h3>
+				<p><span class="image left"><img src="images/AlphaBlendedFoliage.PNG" alt="" /></span>
+					To create a complex environment with a lot of detail, it is more efficient to use textures instead
+					of creating models with every detail that is desired.
+					They have been used extensively to create detailed surfaces of objects in the environment, including
+					the terrain, trees, mushrooms, rocks, and other plants.
+
+					The trees and plant foliage are implemented as a cloud of textured quadrilaterals which is alpha
+					blended
+					to make the textures transparent in the foliage to simulate the leaves. This can be seen on the
+					left.
+				</p>
 				<h3>Baked Lights</h3>
+				<p>
+					Realtime lighting is expensive because all the computation of the lighting of the environment must
+					be done at runtime,
+					fighting for resources that can be used elsewhere. Therefore, we chose to use a mix of baked
+					lighting and realtime lighting
+					for the environment to reduce this performance cost at runtime. Baked lights are light information
+					for static objects
+					that do not move in a scene and are stored in a lightmap which contains the pre-calculated
+					brightness of surfaces in the scene.
+					This stored information is loaded to light the scene at runtime reducing the rendering cost of
+					shadows.
+				</p>
 				<hr />
 
 				<h2>Performance Evaluation</h2>
-				<p>The environment on which the baseline performance is measured
+				<p><span class="image left"><img src="images/Aerial View of Terrain Annotated.PNG" alt="" /></span>The
+					environment on which the baseline performance is measured
 					has HDR, no SSAO, and no antialiasing. A unity project build has
-					been created on which we measure the performance through the
-					benchmarking software MSI afterburner and Rivatuner Statistics
-					Server to measure the fps of the environment. There was no formal
+					been created on which we measure the performance through a
+					benchmarking software to measure the fps of the environment. There was no formal
 					testing done to measure the latency of the controllers, but heuristic
-					evaluation showed that there were no perceptible delays. 
-					<br />
-					The protocol for testing involved travelling along the boundaries of
-					the environment. [INSERT IMAGE OF BOUNDARY] 
-					
-					This allows us to get an exposure to the frame rates of the overall
+					evaluation showed that there were no perceptible delays. The protocol for testing involved
+					travelling along the boundaries of
+					the environment which allows us to get an exposure to the frame rates of the overall
 					environment. After starting the environment, we waited for a
 					minute before starting to take measurements to discard any frame
 					drops from starting the application. Similarly, we discarded frames
@@ -105,409 +216,36 @@
 					The 1% and 0.1% fps results indicate the fps at the worst 1% and
 					0.1% quantiles of frame rates recorded. This is better than using the
 					minimum as the benchmark which can state that we have very low
-					minimum fps even if it is for a negligible period</p>
+					minimum fps even if it is for a negligible period which is in most cases undesirable.
+				</p>
 				<hr />
 
-				<header>
-					<h2>Heading with a Subtitle</h2>
-					<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-				</header>
-				<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non
-					faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan
-					varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-				<header>
-					<h3>Heading with a Subtitle</h3>
-					<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-				</header>
-				<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non
-					faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan
-					varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-				<header>
-					<h4>Heading with a Subtitle</h4>
-					<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-				</header>
-				<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non
-					faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan
-					varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+				<h2>Heuristic Evaluation</h2>
+				<p>Three researchers from the University of Cape Town were asked to evaluate the environment.
+					Two of them were active researchers in the graphics space, and one was a researcher in psychology.
+					The evaluators were overall very happy with the state of the environment and commented that the
+					environment had very high realism,
+					and no issues with performance in both the display refresh rate and controller latency.
+					They experienced no significant cybersickness when viewing the environment and have agreed that the
+					environment would certainly be relaxing,
+					with the psychology researcher definitively stating that she was relaxed,
+					while the computer science researchers stated that they were more focused
+					than relaxed to give as much feedback as possible for the evaluation but mentioned it certainly
+					would be relaxing.
+					They made important points relating to the rendering, usability, and realism which are discussed in
+					detail in the <a href="resources/Soo Kyung Ahn NaturePill.pdf">paper</a>.
+				</p>
 
+				<h2>Conclusion</h2>
+				<p><span class="image left"><img src="images/Aerial View of Terrain Annotated.PNG" alt="" /></span>
+					We created a realistic, realtime, and restorative environment through meticulous design of the
+					environment
+					to capture restorative elements of real nature, and the balance of quality and performance.
+					The presence and usability of the environment was ensured through research in restorative
+					environment design, psychology, and
+					various rendering and optimization techniques from computer science.
+				</p>
 				<hr />
-
-				<!-- Lists -->
-				<h2>Lists</h2>
-				<div class="row">
-					<div class="col-6 col-12-small">
-
-						<h3>Unordered</h3>
-						<ul>
-							<li>Dolor pulvinar etiam.</li>
-							<li>Sagittis lorem eleifend.</li>
-							<li>Felis feugiat dolore viverra.</li>
-							<li>Dolor pulvinar etiam.</li>
-						</ul>
-
-						<h3>Alternate</h3>
-						<ul class="alt">
-							<li>Dolor pulvinar etiam etiam.</li>
-							<li>Sagittis adipiscing eleifend.</li>
-							<li>Felis enim dolore viverra.</li>
-							<li>Dolor pulvinar etiam etiam.</li>
-						</ul>
-
-					</div>
-					<div class="col-6 col-12-small">
-
-						<h3>Ordered</h3>
-						<ol>
-							<li>Dolor pulvinar etiam.</li>
-							<li>Etiam vel felis at viverra.</li>
-							<li>Felis enim feugiat magna.</li>
-							<li>Etiam vel felis nullam.</li>
-							<li>Felis enim et tempus.</li>
-						</ol>
-
-						<h3>Icons</h3>
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a>
-							</li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a>
-							</li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-						</ul>
-						<ul class="icons alt">
-							<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a>
-							</li>
-							<li><a href="#" class="icon brands alt fa-facebook-f"><span
-										class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands alt fa-instagram"><span
-										class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands alt fa-github"><span class="label">Github</span></a></li>
-							<li><a href="#" class="icon brands alt fa-dribbble"><span class="label">Dribbble</span></a>
-							</li>
-						</ul>
-
-					</div>
-				</div>
-				<h3>Definition</h3>
-				<dl>
-					<dt>Item 1</dt>
-					<dd>
-						<p>Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-							felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
-						</p>
-					</dd>
-					<dt>Item 2</dt>
-					<dd>
-						<p>Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-							felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
-						</p>
-					</dd>
-					<dt>Item 3</dt>
-					<dd>
-						<p>Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-							felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
-						</p>
-					</dd>
-				</dl>
-
-				<h3>Actions</h3>
-				<ul class="actions">
-					<li><a href="#" class="button primary">Primary</a></li>
-					<li><a href="#" class="button">Default</a></li>
-				</ul>
-				<ul class="actions small">
-					<li><a href="#" class="button primary small">Small</a></li>
-					<li><a href="#" class="button small">Small</a></li>
-				</ul>
-				<div class="row">
-					<div class="col-6 col-12-small">
-						<ul class="actions stacked">
-							<li><a href="#" class="button primary">Default</a></li>
-							<li><a href="#" class="button">Default</a></li>
-						</ul>
-					</div>
-					<div class="col-6 col-12-small">
-						<ul class="actions stacked">
-							<li><a href="#" class="button primary small">Small</a></li>
-							<li><a href="#" class="button small">Small</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-6 col-12-small">
-						<ul class="actions stacked">
-							<li><a href="#" class="button primary fit">Default</a></li>
-							<li><a href="#" class="button fit">Default</a></li>
-						</ul>
-					</div>
-					<div class="col-6 col-12-small">
-						<ul class="actions stacked">
-							<li><a href="#" class="button primary small fit">Small</a></li>
-							<li><a href="#" class="button small fit">Small</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<hr />
-
-				<!-- Blockquote -->
-				<h2>Blockquote</h2>
-				
-
-				<hr />
-
-				<!-- Table -->
-				<h2>Table</h2>
-
-				<h3>Default</h3>
-				<div class="table-wrapper">
-					<table>
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Description</th>
-								<th>Price</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Item 1</td>
-								<td>Ante turpis integer aliquet porttitor.</td>
-								<td>29.99</td>
-							</tr>
-							<tr>
-								<td>Item 2</td>
-								<td>Vis ac commodo adipiscing arcu aliquet.</td>
-								<td>19.99</td>
-							</tr>
-							<tr>
-								<td>Item 3</td>
-								<td> Morbi faucibus arcu accumsan lorem.</td>
-								<td>29.99</td>
-							</tr>
-							<tr>
-								<td>Item 4</td>
-								<td>Vitae integer tempus condimentum.</td>
-								<td>19.99</td>
-							</tr>
-							<tr>
-								<td>Item 5</td>
-								<td>Ante turpis integer aliquet porttitor.</td>
-								<td>29.99</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td colspan="2"></td>
-								<td>100.00</td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-
-				<h3>Alternate</h3>
-				<div class="table-wrapper">
-					<table class="alt">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Description</th>
-								<th>Price</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Item 1</td>
-								<td>Ante turpis integer aliquet porttitor.</td>
-								<td>29.99</td>
-							</tr>
-							<tr>
-								<td>Item 2</td>
-								<td>Vis ac commodo adipiscing arcu aliquet.</td>
-								<td>19.99</td>
-							</tr>
-							<tr>
-								<td>Item 3</td>
-								<td> Morbi faucibus arcu accumsan lorem.</td>
-								<td>29.99</td>
-							</tr>
-							<tr>
-								<td>Item 4</td>
-								<td>Vitae integer tempus condimentum.</td>
-								<td>19.99</td>
-							</tr>
-							<tr>
-								<td>Item 5</td>
-								<td>Ante turpis integer aliquet porttitor.</td>
-								<td>29.99</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td colspan="2"></td>
-								<td>100.00</td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-
-				<hr />
-
-				<!-- Buttons -->
-				<h2>Buttons</h2>
-				<ul class="actions">
-					<li><a href="#" class="button primary">Primary</a></li>
-					<li><a href="#" class="button">Default</a></li>
-				</ul>
-				<ul class="actions">
-					<li><a href="#" class="button primary large">Large</a></li>
-					<li><a href="#" class="button">Default</a></li>
-					<li><a href="#" class="button small">Small</a></li>
-				</ul>
-				<ul class="actions fit">
-					<li><a href="#" class="button primary fit">Fit</a></li>
-					<li><a href="#" class="button fit">Fit</a></li>
-				</ul>
-				<ul class="actions fit small">
-					<li><a href="#" class="button primary fit small">Fit + Small</a></li>
-					<li><a href="#" class="button fit small">Fit + Small</a></li>
-				</ul>
-				<ul class="actions">
-					<li><a href="#" class="button primary icon solid fa-search">Icon</a></li>
-					<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-				</ul>
-				<ul class="actions">
-					<li><span class="button primary disabled">Primary</span></li>
-					<li><span class="button disabled">Default</span></li>
-				</ul>
-
-				<hr />
-
-				<!-- Form -->
-				<h2>Form</h2>
-
-				<form method="post" action="#">
-					<div class="row gtr-uniform">
-						<div class="col-6 col-12-xsmall">
-							<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
-						</div>
-						<div class="col-6 col-12-xsmall">
-							<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
-						</div>
-						<!-- Break -->
-						<div class="col-12">
-							<select name="demo-category" id="demo-category">
-								<option value="">- Category -</option>
-								<option value="1">Manufacturing</option>
-								<option value="1">Shipping</option>
-								<option value="1">Administration</option>
-								<option value="1">Human Resources</option>
-							</select>
-						</div>
-						<!-- Break -->
-						<div class="col-4 col-12-small">
-							<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-							<label for="demo-priority-low">Low</label>
-						</div>
-						<div class="col-4 col-12-small">
-							<input type="radio" id="demo-priority-normal" name="demo-priority">
-							<label for="demo-priority-normal">Normal</label>
-						</div>
-						<div class="col-4 col-12-small">
-							<input type="radio" id="demo-priority-high" name="demo-priority">
-							<label for="demo-priority-high">High</label>
-						</div>
-						<!-- Break -->
-						<div class="col-6 col-12-small">
-							<input type="checkbox" id="demo-copy" name="demo-copy">
-							<label for="demo-copy">Email me a copy</label>
-						</div>
-						<div class="col-6 col-12-small">
-							<input type="checkbox" id="demo-human" name="demo-human" checked>
-							<label for="demo-human">I am a human</label>
-						</div>
-						<!-- Break -->
-						<div class="col-12">
-							<textarea name="demo-message" id="demo-message" placeholder="Enter your message"
-								rows="6"></textarea>
-						</div>
-						<!-- Break -->
-						<div class="col-12">
-							<ul class="actions">
-								<li><input type="submit" value="Send Message" class="primary" /></li>
-								<li><input type="reset" value="Reset" /></li>
-							</ul>
-						</div>
-					</div>
-				</form>
-
-				<hr />
-
-				<!-- Image -->
-				<h2>Image</h2>
-
-				<h3>Fit</h3>
-				<span class="image fit"><img src="images/pic01.jpg" alt="" /></span>
-				<div class="box alt">
-					<div class="row gtr-50 gtr-uniform">
-						<div class="col-4"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
-						<div class="col-4"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
-						<div class="col-4"><span class="image fit"><img src="images/pic04.jpg" alt="" /></span></div>
-						<!-- Break -->
-						<div class="col-4"><span class="image fit"><img src="images/pic04.jpg" alt="" /></span></div>
-						<div class="col-4"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
-						<div class="col-4"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
-						<!-- Break -->
-						<div class="col-4"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
-						<div class="col-4"><span class="image fit"><img src="images/pic04.jpg" alt="" /></span></div>
-						<div class="col-4"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
-					</div>
-				</div>
-
-				<h3>Left &amp; Right</h3>
-				<p><span class="image left"><img src="images/pic08.jpg" alt="" /></span>Lorem ipsum dolor sit accumsan
-					interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in
-					faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu
-					faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum
-					ante ipsum primis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus
-					vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer
-					ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis
-					in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu
-					faucibus. Integer ac pellentesque praesent. Vestibulum ante ipsum primis in faucibus magna blandit
-					adipiscing eu felis iaculis.</p>
-				<p><span class="image right"><img src="images/pic09.jpg" alt="" /></span>Lorem ipsum dolor sit accumsan
-					interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in
-					faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu
-					faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum
-					ante ipsum primis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus
-					vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer
-					ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis
-					in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu
-					faucibus. Integer ac pellentesque praesent. Vestibulum ante ipsum primis in faucibus magna blandit
-					adipiscing eu felis iaculis.</p>
-
-				<hr />
-
-				<!-- Box -->
-				<h2>Box</h2>
-				<div class="box">
-					<p>Felis sagittis eget tempus primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
-						volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis
-						sagittis eget. tempus euismod. Magna sed etiam ante ipsum primis in faucibus vestibulum. Blandit
-						adipiscing eu ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat
-						ac adipiscing accumsan eu faucibus lorem ipsum dolor sit amet nullam. Integer ac pellentesque
-						praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis
-						eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu
-						felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent
-						tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus
-						vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus.
-						Integer ac pellentesque praesent. Vestibulum ante ipsum primis in faucibus magna blandit
-						adipiscing eu felis iaculis volutpat lorem ipsum dolor.</p>
-				</div>
-
-				<hr />
-
 			</section>
 
 		</div>
